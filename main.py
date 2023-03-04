@@ -1,6 +1,8 @@
 import pygame
 from pygame.locals import *
 from colors import *
+from popup import show_message
+import os
 
 class Game:
 
@@ -16,7 +18,7 @@ class Game:
         pygame.display.update()
     
     def define_board(self):
-        self.board = [[],[],[]]
+        self.board = [[0,0,0],[0,0,0],[0,0,0]]
         self.squares = []
         x = 0
         y = 0
@@ -24,7 +26,7 @@ class Game:
         for i in range(3):
             for j in range(3):
                 rect = Rect(x,y,200,200)
-                pygame.draw.rect(self.screen, RED, rect, 2)
+                pygame.draw.rect(self.screen, BLACK, rect, 2)
                 self.squares.append([rect, x, x+200, y, y+200, id])
                 x += 200
                 id += 1
@@ -36,22 +38,26 @@ class Game:
         for _c in self.squares:
             if (pos[0] > _c[1]) and(pos[0] < _c[2]) and (pos[1] > _c[3]) and (pos[1] < _c[4]):
                 cell = _c
-                print(_c[5])
+        if self.board[int(cell[5]/3)][cell[5]%3] == 0:
+            if player == 1:
+                img = pygame.image.load('img/x.png').convert()
+            else:
+                img = pygame.image.load('img/o.png').convert()
                 
-        if player == 1:
-            img = pygame.image.load('img/x.png').convert()
+            rect = img.get_rect()
+            rect.center = cell[1]+100, cell[3]+100
+            self.screen.blit(img, rect)
+            pygame.draw.rect(self.screen, WHITE, rect, 1)
+            pygame.display.update()
+            self.change_board(cell[5], player)
+            self.active_player = (1,2)[self.active_player == 1]
         else:
-            img = pygame.image.load('img/o.png').convert()
-            
-        rect = img.get_rect()
-        rect.center = cell[1]+100, cell[3]+100
-        self.screen.blit(img, rect)
-        pygame.draw.rect(self.screen, WHITE, rect, 1)
-        pygame.display.update()
+            show_message("Error","This cell is taken","Ok")
     
-    def change_board(self):
-        pass
-            
+    def change_board(self, id, player):
+        self.board[int(id/3)][id%3] = player
+        #### Check if someone has won
+
     def run(self):
         while self.running:
             for event in pygame.event.get():
@@ -59,7 +65,7 @@ class Game:
                     self.running = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     self.click(pygame.mouse.get_pos(), self.active_player)
-                    self.active_player = (1,2)[self.active_player == 1]
+                    
         pygame.quit()   
     
     
