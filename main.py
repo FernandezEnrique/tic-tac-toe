@@ -38,6 +38,7 @@ class Game:
         for _c in self.squares:
             if (pos[0] > _c[1]) and(pos[0] < _c[2]) and (pos[1] > _c[3]) and (pos[1] < _c[4]):
                 cell = _c
+                
         if self.board[int(cell[5]/3)][cell[5]%3] == 0:
             if player == 1:
                 img = pygame.image.load('img/x.png').convert()
