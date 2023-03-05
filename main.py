@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 from colors import *
 from popup import show_message
-import os
+from win_checker import main as win_checker
 
 class Game:
 
@@ -10,6 +10,7 @@ class Game:
         pygame.init()
         self.screen = pygame.display.set_mode((600, 600))
         self.running = True
+        self.playing = True
         self.active_player = 1 # 1 is X and 2 is O
         self.background = WHITE
         self.screen.fill(self.background)
@@ -57,14 +58,18 @@ class Game:
     
     def change_board(self, id, player):
         self.board[int(id/3)][id%3] = player
-        #### Check if someone has won
+        result = win_checker(self.board)
+        if result != 0:
+            self.playing = False
+            show_message("Error",f"Player {result} is the winner","Ok")
+        
 
     def run(self):
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                elif event.type == pygame.MOUSEBUTTONDOWN:
+                elif event.type == pygame.MOUSEBUTTONDOWN and self.playing == True:
                     self.click(pygame.mouse.get_pos(), self.active_player)
                     
         pygame.quit()   
