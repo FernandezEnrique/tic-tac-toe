@@ -6,6 +6,10 @@ You can only play locally against your friend but in the future you might be abl
 ![Screenshot of game](https://github.com/FernandezEnrique/tic-tac-toe/blob/main/img/readme/Game-img.png?raw=true)
 
 # How to install it
+First of all, clone it
+```
+git clone https://github.com/FernandezEnrique/tic-tac-toe.git
+```
 We need python3, it is using PyGame and Tkinter libraries so you need to install it, on Windows we will install it inside a virtual env.
 ```
 virtualenv env
