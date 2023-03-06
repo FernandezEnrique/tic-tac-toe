@@ -16,7 +16,7 @@ env/Scripts/activate
 ```
 On linux (you may need to install PyGame locally)
 ```
-source env/Scripts/activate
+source env/bin/activate
 ```
 We have prepared a requirements.txt file that includes every single dependence.
 ```
