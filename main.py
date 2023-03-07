@@ -62,7 +62,7 @@ class Game:
         result = win_checker(self.board)
         if result != 0:
             self.playing = False
-            show_message("Error",f"Player {result} is the winner","Ok")
+            show_message("Winner",f"Player {result} is the winner","Ok")
         
 
     def run(self):

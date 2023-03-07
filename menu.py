@@ -11,6 +11,7 @@ class Menu:
         self.win.config(bg="cornsilk4") 
         self.win.resizable(0,0)
         self.selection = None
+        self.win.iconbitmap('img/icono.ico')
 
         
         image = Image.open("img/readme/game-img.png")

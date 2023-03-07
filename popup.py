@@ -7,7 +7,7 @@ def show_message(caption, msg, btn):
     win = Tk()
     win.title(caption)
     win.geometry(f"300x150")
-    #win.iconbitmap('icono.ico') hay que convertir el archivo
+    win.iconbitmap('img/icono.ico')
     win.config(bg="cornsilk4") 
     win.resizable(0,0)
 
