@@ -1,8 +1,9 @@
 import pygame
 from pygame.locals import *
 from colors import *
-from popup import show_message, menu
+from popup import show_message
 from win_checker import main as win_checker
+from menu import Menu
 
 class Game:
 
@@ -76,10 +77,10 @@ class Game:
     
     
 if __name__ == '__main__':
-    mode = menu("Menu", "Choose game mode", "Local", "Machine")
-    print(mode)
-    if ( mode == "Local"):
+    mode = Menu("Menu", "Choose game mode", "Local", "Machine")
+    if ( mode.selection == "Local"):
+        print("Local")
         Game().run()
 
     else:
-        print("A")
+        print("Machine")
