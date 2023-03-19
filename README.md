@@ -3,8 +3,8 @@ We have developed a TIC TAC TOE game with Python3 using Pygame.
 
 You can only play locally against your friend but in the future you might be able to play against CPU or even online.
 
-![Screenshot of menu](https://github.com/FernandezEnrique/tic-tac-toe/blob/main/img/readme/menu.png?raw=true)
-![Screenshot of game](https://github.com/FernandezEnrique/tic-tac-toe/blob/main/img/readme/Game-img.png?raw=true)
+<img src="https://github.com/FernandezEnrique/.github/blob/main/tic-tac-toe/menu.png" width="300"/>
+<img src="https://github.com/FernandezEnrique/.github/blob/main/tic-tac-toe/Game-img.png" width="300"/>
 
 # How to install it
 First of all, clone it
