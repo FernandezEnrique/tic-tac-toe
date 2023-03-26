@@ -14,7 +14,7 @@ class Menu:
         self.win.iconbitmap('img/icono.ico')
 
         
-        image = Image.open("img/readme/game-img.png")
+        image = Image.open("img/game-img.png")
         image = image.resize((200,200), Image.ANTIALIAS)
         img = ImageTk.PhotoImage(image)
 
