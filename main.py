@@ -54,9 +54,9 @@ class Game:
     def update_game(self, cell, row, column, x_position, y_position, player):          
         if self.board[row][column] == 0:
             if player == 1:
-                img = pygame.image.load('img/x.png').convert()
+                img = pygame.image.load('img/x_mini.png').convert()
             else:
-                img = pygame.image.load('img/o.png').convert()
+                img = pygame.image.load('img/o_mini.png').convert()
                 
             rect = img.get_rect()
             rect.center = x_position, y_position
