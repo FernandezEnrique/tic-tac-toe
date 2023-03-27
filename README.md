@@ -1,7 +1,7 @@
 # TIC-TAC-TOE GAME
 We have developed a TIC TAC TOE game with Python3 using Pygame. 
 
-You can only play locally against your friend but in the future you might be able to play against CPU or even online.
+There are 2 modes, you can play locally against your friends or agains the computer.
 
 <img src="https://github.com/FernandezEnrique/.github/blob/main/tic-tac-toe/menu.png" width="300"/>
 <img src="https://github.com/FernandezEnrique/.github/blob/main/tic-tac-toe/Game-img.png" width="300"/>
