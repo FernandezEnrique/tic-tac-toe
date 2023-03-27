@@ -5,6 +5,7 @@ from popup import show_message
 from win_checker import main as win_checker
 from menu import Menu
 from machine import get_machine_position, get_cell
+import time
 
 class Game:
 
@@ -107,6 +108,7 @@ class Game:
                     if self.mode == "machine" and self.playing:
                         machine_pos = get_machine_position(self.board)
                         cell = get_cell(self.squares, machine_pos)
+                        time.sleep(0.5)
                         self.update_game(cell['cell'], 
                                             cell['row'], 
                                             cell['column'], 
