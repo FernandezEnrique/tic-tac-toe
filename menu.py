@@ -4,7 +4,7 @@ from tkinter import font
 from PIL import ImageTk, Image
 
 class Menu:
-    def __init__(self, caption, msg, btn1, btn2):
+    def __init__(self, caption, msg, btn1, btn2, btn3=""):
         self.win = Tk()
         self.win.title(caption)
         self.win.geometry(f"450x550")
@@ -13,6 +13,9 @@ class Menu:
         self.selection = None
         self.win.iconbitmap('img/icono.ico')
 
+        self.opc1 = btn1
+        self.opc2 = btn2
+        self.opc3 = btn3
         
         image = Image.open("img/game-img.png")
         image = image.resize((200,200), Image.ANTIALIAS)
@@ -21,21 +24,29 @@ class Menu:
         font_button = font.Font(family='Tahoma', size=16)
 
         Label(self.win, text=msg, font=font_button, bg="cornsilk3", fg="black").pack(pady=20)
-        local_button = Button(self.win, text = btn1, font = font_button, bg="cornsilk3", fg="black", command=self.local).pack(pady=20)
-        machine_button = Button(self.win, text = btn2, font = font_button, bg="cornsilk3", fg="black", command = self.machine).pack(pady=20)
+        opc1_button = Button(self.win, text = btn1, font = font_button, bg="cornsilk3", fg="black", command=self.option1).pack(pady=20)
+        opc2_button = Button(self.win, text = btn2, font = font_button, bg="cornsilk3", fg="black", command = self.option2).pack(pady=20)
+        if self.opc3 != "":
+            opc3_button = Button(self.win, text = btn3, font = font_button, bg="cornsilk3", fg="black", command = self.option3).pack(pady=20)
+
         lbl_img = Label(self.win, image = img)
         lbl_img.pack()
 
         
         self.win.mainloop()
     
-    def local(self):
-        self.selection = "Local"
+    def option1(self):
+        self.selection = self.opc1
         self.win.destroy()
-        return "Local"
+        return self.opc1
 
 
-    def machine(self):
-        self.selection = "Machine"
+    def option2(self):
+        self.selection = self.opc2
         self.win.destroy()
-        return "Machine"
+        return self.opc2
+    
+    def option3(self):
+        self.selection = self.opc3
+        self.win.destroy()
+        return self.opc3

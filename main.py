@@ -61,9 +61,22 @@ class Game:
         self.board[int(id/3)][id%3] = player
         result = win_checker(self.board)
         if result != 0:
-            self.playing = False
-            show_message("Winner",f"Player {result} is the winner","Ok")
-        
+            self.running = False
+            #show_message("Winner",f"Player {result} is the winner","Ok")
+            response = Menu("Winner",f"Player {result} is the winner. Play again?", "Yes", "No", "Back to Menu")
+            if (response.selection == "Yes"):
+                Game().run()
+
+            elif (response.selection == "Back to Menu"): 
+                mode = Menu("Menu", "Choose game mode", "Local", "Machine")
+                if ( mode.selection == "Local"):
+                    print("Local")
+                    Game().run()
+                else:
+                    print("Machine")
+            else:
+                self.running = False
+                
 
     def run(self):
         while self.running:
@@ -79,7 +92,6 @@ class Game:
 if __name__ == '__main__':
     mode = Menu("Menu", "Choose game mode", "Local", "Machine")
     if ( mode.selection == "Local"):
-        print("Local")
         Game().run()
 
     else:
