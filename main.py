@@ -20,6 +20,8 @@ class Game:
         self.background = WHITE
         self.screen.fill(self.background)
         self.define_board()
+        self.icon = pygame.image.load('img/x_minib.png')
+        pygame.display.set_icon(self.icon)
         pygame.display.set_caption('Tic Tac Toe')
         pygame.display.update()
     
@@ -55,9 +57,9 @@ class Game:
     def update_game(self, cell, row, column, x_position, y_position, player):          
         if self.board[row][column] == 0:
             if player == 1:
-                img = pygame.image.load('img/x_mini.png').convert()
+                img = pygame.image.load('img/x_minib.png').convert()
             else:
-                img = pygame.image.load('img/o_mini.png').convert()
+                img = pygame.image.load('img/o_minir.png').convert()
                 
             rect = img.get_rect()
             rect.center = x_position, y_position
@@ -77,17 +79,30 @@ class Game:
             self.playing = False
             self.running = False
             response = Menu("Winner",f"Player {result} is the winner. Play again?", "Yes", "No", "Back to Menu")
-            if (response.selection == "Yes"):
+            if response.selection == "Yes":
                 Game(self.mode).run()
-
-            elif (response.selection == "Back to Menu"): 
+            elif response.selection == "Back to Menu": 
                 mode = Menu("Menu", "Choose game mode", "Local", "Machine")
-                if ( mode.selection == "Local"):
+                if mode.selection == "Local":
                     Game("local").run()
                 else:
                     Game("machine").run()
             else:
-                self.running = False                
+                self.running = False 
+        elif self.is_tie():
+            self.playing = False
+            self.running = False
+            response = Menu("Tie", "It's a tie. Play again?", "Yes", "No", "Back to Menu")
+            if response.selection == "Yes":
+                Game(self.mode).run()
+            elif response.selection == "Back to Menu": 
+                mode = Menu("Menu", "Choose game mode", "Local", "Machine")
+                if mode.selection == "Local":
+                    Game("local").run()
+                else:
+                    Game("machine").run()
+            else:
+                self.running = False                 
 
     def is_tie(self):
         tie = True
@@ -97,14 +112,13 @@ class Game:
         return tie
 
     def run(self):
+        tie = False
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
                 elif event.type == pygame.MOUSEBUTTONDOWN and self.playing == True:
                     updated = self.click(pygame.mouse.get_pos(), self.active_player)
-                    if self.is_tie():
-                        self.playing = False
 
                     if self.mode == "machine" and self.playing and updated:
                         machine_pos = get_machine_position(self.board)
@@ -115,9 +129,7 @@ class Game:
                                             cell['column'], 
                                             cell['x_position'], 
                                             cell['y_position'], 
-                                            self.machine_player)
-                
-                        
+                                            self.machine_player)              
         pygame.quit()   
     
     
