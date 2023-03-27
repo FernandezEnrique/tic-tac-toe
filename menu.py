@@ -32,6 +32,12 @@ class Menu:
         lbl_img = Label(self.win, image = img)
         lbl_img.pack()
 
+        self.screen_width = self.win.winfo_screenwidth()
+        self.screen_height = self.win.winfo_screenheight()
+        self.x_coordinate = int((self.screen_width/2) - (450/2))
+        self.y_coordinate = int((self.screen_height/2) - (550/2))
+        self.win.geometry("{}x{}+{}+{}".format(450, 550, self.x_coordinate, self.y_coordinate))
+
         
         self.win.mainloop()
     

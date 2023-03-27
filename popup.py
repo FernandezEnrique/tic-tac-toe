@@ -11,6 +11,16 @@ def show_message(caption, msg, btn):
     win.config(bg="cornsilk4") 
     win.resizable(0,0)
 
+    screen_width = win.winfo_screenwidth()
+    screen_height = win.winfo_screenheight()
+    window_width = 300
+    window_height = 150
+
+    x = (screen_width // 2) - (window_width // 2)
+    y = (screen_height // 2) - (window_height // 2)
+
+    win.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
     font_winner = font.Font(family='Tahoma', size=16)
     font_exit = font.Font(family='Comic Sans MS', size=8)
 
