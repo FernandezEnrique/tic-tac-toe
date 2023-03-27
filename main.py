@@ -50,6 +50,7 @@ class Game:
                 updated = self.update_game(cell[5], row, column, x_position, y_position, player)
                 if updated and self.mode == "local":
                     self.active_player = (1,2)[self.active_player == 1]
+                return updated
 
     def update_game(self, cell, row, column, x_position, y_position, player):          
         if self.board[row][column] == 0:
@@ -101,11 +102,11 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False
                 elif event.type == pygame.MOUSEBUTTONDOWN and self.playing == True:
-                    self.click(pygame.mouse.get_pos(), self.active_player)
+                    updated = self.click(pygame.mouse.get_pos(), self.active_player)
                     if self.is_tie():
                         self.playing = False
 
-                    if self.mode == "machine" and self.playing:
+                    if self.mode == "machine" and self.playing and updated:
                         machine_pos = get_machine_position(self.board)
                         cell = get_cell(self.squares, machine_pos)
                         time.sleep(0.5)
@@ -124,6 +125,5 @@ if __name__ == '__main__':
     mode = Menu("Menu", "Choose game mode", "Local", "Machine")
     if ( mode.selection == "Local"):
         Game("local").run()
-
     else:
         Game("machine").run()
